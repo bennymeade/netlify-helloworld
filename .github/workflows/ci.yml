@@ -1,0 +1,38 @@
+name: cypress-in-ci
+
+on:
+  workflow_dispatch:
+
+jobs:
+  data-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install package dependencies
+        run: yarn install
+
+      - name: Install webkit dependencies
+        uses: cypress-io/github-action@v4
+        with:
+          build: npx playwright install-deps webkit
+          runTests: false
+
+      - name: Start Dev localhost
+        run: npm run dev
+
+      - name: Run int tests - chrome
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          headless: true
+          wait-on: 'http://127.0.0.1:3000/'
+          command: yarn test --browser chrome
+
+      - name: Run intn tests - safari
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          headless: true
+          wait-on: 'http://127.0.0.1:3000/'
+          command: yarn test --browser webkit
