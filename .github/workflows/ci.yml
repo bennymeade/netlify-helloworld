@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  data-checks:
+  build-and-run-int-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Install package dependencies
         run: yarn install
