@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install package dependencies
-        run: yarn install
+        run: npm install
 
       - name: Install webkit dependencies
         uses: cypress-io/github-action@v4
@@ -29,7 +29,7 @@ jobs:
           wait-on: 'http://127.0.0.1:3000/'
           command: yarn test --browser chrome
 
-      - name: Run intn tests - safari
+      - name: Run int tests - safari
         uses: cypress-io/github-action@v4
         with:
           install: false
