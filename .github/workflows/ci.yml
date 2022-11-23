@@ -32,5 +32,6 @@ jobs:
         with:
           install: false
           headless: true
+          start: npm run dev
           wait-on: 'http://127.0.0.1:3000/'
           command: yarn test --browser webkit
